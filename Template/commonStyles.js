@@ -346,6 +346,13 @@ const commonStyles = StyleSheet.create({
       tintColor: '#6d29db',
   
     },
+    
+    tornar_picture: {
+      width:35,
+      height:35,
+      tintColor: '#6d29db',
+  
+    },
 
     bloctornar: {
       position:'absolute',
@@ -504,6 +511,7 @@ const commonStyles = StyleSheet.create({
       color:'#454545',
       alignItems:'center',
       backgroundColor:'#ffffff',
+        height:40,
     },
     pickerlanguage: {
       height: 30,
@@ -518,6 +526,16 @@ const commonStyles = StyleSheet.create({
     textpicker: {
       color: '#454545',
       width:'30%',
+    },
+    pickervar: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        height:'100%',
+            
+    },
+    textvar: {
+      color: '#454545',
+      fontSize:16,
     },
     
     bottom: {
@@ -558,6 +576,7 @@ const commonStyles = StyleSheet.create({
     },
     closeText: {
       fontSize: 30,
+        color: '#ffffff',
     },
     menuLink: {
       marginTop: 20,

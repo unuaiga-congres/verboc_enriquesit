@@ -23,7 +23,7 @@ import QuizzTemps from './Components/Games/QuizzTemps';
 import QuizzPers from './Components/Games/QuizzPers';
 import QuizzOrdre from './Components/Games/QuizzOrdre';
 import QuizzAnagramme from './Components/Games/QuizzAnagramme';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context';
 
 
 
@@ -66,6 +66,7 @@ function App() {
   }
 
   return (
+  <SafeAreaProvider>
     <SettingsProvider>
     <SoundProvider>
       <SafeAreaView style={{flex:1}}>
@@ -97,6 +98,7 @@ function App() {
       </SafeAreaView>
     </SoundProvider>
     </SettingsProvider>
+  </SafeAreaProvider>
   );
 }
 

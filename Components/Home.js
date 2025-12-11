@@ -9,6 +9,7 @@ import { getConjugationFromVerb } from '../API/VerbocApi'
 import { DisplayConj } from '../Template/DisplayConj';
 import { DisplayFavori } from '../Template/DisplayFavori';
 import { useSettings } from '../Contexts/SettingsContext';
+import RNPickerSelect from "react-native-picker-select";
 
 import commonStyles from '../Template/commonStyles';
 
@@ -170,6 +171,7 @@ const HomeScreen = function ({ navigation, route }) {
     return (
       
       <View style={commonStyles.search_form}>
+            
       <TextInput
         placeholder='Entrar un vèrbe en occitan...'
         multiline = {false}
@@ -180,16 +182,33 @@ const HomeScreen = function ({ navigation, route }) {
       />
       <View style={commonStyles.pickerlabel}>
         <Text style={[commonStyles.textpicker]}>Varietat&nbsp;:</Text>
-        <Picker
-          style={commonStyles.pickerlanguage}
-          selectedValue={variety}
-          onValueChange={(itemValue, itemIndex) => saveVariety(itemValue)}
-        >
-          <Picker.Item label="occitan gascon" value="gascon" />
-          <Picker.Item label="occitan lemosin" value="lemosin" />
-          <Picker.Item label="occitan lengadocian" value="lengadoc" />
-          <Picker.Item label="occitan provençal" value="provenc" />
-        </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => saveVariety(value)}
+              value={variety}
+              items={[
+                { label: "occitan gascon", value: "gascon" },
+                { label: "occitan lemosin", value: "lemosin" },
+                { label: "occitan lengadocian", value: "lengadoc" },
+                { label: "occitan provençal", value: "provenc" },
+              ]}
+              style={{
+                inputIOS: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                inputAndroid: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                placeholder: {
+                  color: "#454545",
+                },
+              }}
+              useNativeAndroidPickerStyle={false}
+            />
+            
       </View>
       <View style={commonStyles.buttons}>
         <TouchableOpacity style={[commonStyles.button_votz, commonStyles.button_cercar]} onPress={() => loadConj('', 'no')}>
@@ -231,8 +250,7 @@ const HomeScreen = function ({ navigation, route }) {
 
     <Layout>
           {displayForm()}
-
-          {isLoading=="False" ? null : 
+          {isLoading=="False" ? null :
             <View style={commonStyles.loading_container}>
               <ActivityIndicator color="#000000" size="large" />
             </View>}

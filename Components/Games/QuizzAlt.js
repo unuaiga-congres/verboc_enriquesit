@@ -4,6 +4,7 @@ import Layout from '../../Template/Layout';
 import React, { useState, useEffect } from 'react'
 import { View, TouchableOpacity, Image, Text, ActivityIndicator } from 'react-native'
 import {Picker} from "@react-native-picker/picker";
+import RNPickerSelect from "react-native-picker-select";
 import { useSettings } from '../../Contexts/SettingsContext';
 
 
@@ -153,16 +154,32 @@ const QuizzAlt = function ({ navigation, route }) {
           </View>
           <View style={commonStyles.pickerlabel}>
             <Text style={[commonStyles.textpicker]}>Jogar en&nbsp;:</Text>
-            <Picker
-              style={commonStyles.pickerlanguage}
-              selectedValue={variety}
-              onValueChange={(itemValue, itemIndex) => saveVariety(itemValue)}
-            >
-              <Picker.Item label="occitan gascon" value="gascon" />
-              <Picker.Item label="occitan lemosin" value="lemosin" />
-              <Picker.Item label="occitan lengadocian" value="lengadoc" />
-              <Picker.Item label="occitan provençal" value="provenc" />
-            </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => saveVariety(value)}
+              value={variety}
+              items={[
+                { label: "occitan gascon", value: "gascon" },
+                { label: "occitan lemosin", value: "lemosin" },
+                { label: "occitan lengadocian", value: "lengadoc" },
+                { label: "occitan provençal", value: "provenc" },
+              ]}
+              style={{
+                inputIOS: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                inputAndroid: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                placeholder: {
+                  color: "#454545",
+                },
+              }}
+              useNativeAndroidPickerStyle={false}
+            />
           </View>
       </View>
     )

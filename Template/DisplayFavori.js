@@ -48,7 +48,18 @@ export const DisplayFavori = ({ infinitive, variety, dist }) => {
       };
 
       useEffect(() => {
+          if (!infinitive || !variety) return;
+        console.log('useEffect')
+        console.log(infinitive)
+          console.log(dist)
+          console.log(variety)
         checkIfFavoriteExists(infinitive, dist, variety, (exists) => {
+            console.log('check')
+            console.log(infinitive)
+              console.log(dist)
+              console.log(variety)
+            console.log('exists')
+            console.log(exists)
           setIsFavorite(exists);
         });
       }, [infinitive, dist, variety]);
@@ -96,13 +107,27 @@ export const DisplayFavori = ({ infinitive, variety, dist }) => {
         if (isFavorite == true) {
           return (
             <TouchableOpacity style={commonStyles.fav_button} onPress={() => deleteFromFavorites(infinitive, dist, variety)}>
-              <Image style={commonStyles.fav_picture} source={require('../Images/favfull.png')} />
+                  <Image
+                    key={isFavorite ? 'full' : 'empty'}
+                    style={commonStyles.fav_picture}
+                    source={isFavorite
+                      ? require('../Images/favfull.png')
+                      : require('../Images/favempty.png')
+                    }
+                  />
             </TouchableOpacity>
           )
         } else {
           return (
             <TouchableOpacity style={commonStyles.fav_button} onPress={() => addToFavorites(infinitive, dist, variety)}>
-              <Image style={commonStyles.fav_picture} source={require('../Images/favempty.png')} />
+                  <Image
+                    key={isFavorite ? 'full' : 'empty'}
+                    style={commonStyles.fav_picture}
+                    source={isFavorite
+                      ? require('../Images/favfull.png')
+                      : require('../Images/favempty.png')
+                    }
+                  />
             </TouchableOpacity>
           )
         }

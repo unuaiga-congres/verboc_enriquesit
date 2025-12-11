@@ -4,6 +4,7 @@ import Layout from '../../Template/Layout';
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, TouchableOpacity, Image, Text, ActivityIndicator, Dimensions } from 'react-native'
 import {Picker} from "@react-native-picker/picker";
+import RNPickerSelect from "react-native-picker-select";
 import { getRandomTimes } from '../../API/VerbocApi'
 import 'react-native-gesture-handler'
 import { GestureHandlerRootView, PanGestureHandler } from 'react-native-gesture-handler';
@@ -307,47 +308,92 @@ const QuizzOrdre = function ({ navigation, route }) {
           </View>
             <View style={commonStyles.pickerlabel}>
               <Text style={[commonStyles.textpicker]}>Jogar en&nbsp;:</Text>
-              <Picker
-                style={commonStyles.pickerlanguage}
-                selectedValue={variety}
-                onValueChange={(itemValue, itemIndex) => saveVariety(itemValue)}
-              >
-                <Picker.Item label="occitan gascon" value="gascon" />
-                <Picker.Item label="occitan lemosin" value="lemosin" />
-                <Picker.Item label="occitan lengadocian" value="lengadoc" />
-                <Picker.Item label="occitan provençal" value="provenc" />
-              </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => saveVariety(value)}
+              value={variety}
+              items={[
+                { label: "occitan gascon", value: "gascon" },
+                { label: "occitan lemosin", value: "lemosin" },
+                { label: "occitan lengadocian", value: "lengadoc" },
+                { label: "occitan provençal", value: "provenc" },
+              ]}
+              style={{
+                inputIOS: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                inputAndroid: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                placeholder: {
+                  color: "#454545",
+                },
+              }}
+              useNativeAndroidPickerStyle={false}
+            />
             </View>
             <View style={commonStyles.pickerlabel}>
               <Text style={[commonStyles.textpicker]}>Grop&nbsp;:</Text>
-              <Picker
-                style={commonStyles.pickerlanguage}
-                selectedValue={group}
-                onValueChange={(itemValue, itemIndex) => setGroup(itemValue)}
-              >
-                <Picker.Item label="totes" value="all" />
-                <Picker.Item label="primièr" value="1" />
-                <Picker.Item label="segond" value="2" />
-                <Picker.Item label="tresen" value="3" />
-                <Picker.Item label="sens grop" value="0" />
-              </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => setGroup(value)}
+              value={group}
+              items={[
+                { label: "totes", value: "all" },
+                { label: "primièr", value: "1" },
+                { label: "segond", value: "2" },
+                { label: "tresen", value: "3" },
+                { label: "sens grop", value: "0" },
+              ]}
+              style={{
+                inputIOS: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                inputAndroid: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                placeholder: {
+                  color: "#454545",
+                },
+              }}
+              useNativeAndroidPickerStyle={false}
+            />
             </View>
             <View style={commonStyles.pickerlabel}>
               <Text style={[commonStyles.textpicker]}>Temps&nbsp;:</Text>
-              <Picker
-                style={commonStyles.pickerlanguage}
-                selectedValue={time}
-                onValueChange={(itemValue, itemIndex) => setTime(itemValue)}
-              >
-                <Picker.Item label="totes" value="all" />
-                {timesList.map((item, index) => (
-                  <Picker.Item
-                    key={index}
-                    label={item.aff}
-                    value={index}
-                  />
-                ))}
-              </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => setTime(value)}
+              value={time}
+              items={[
+                { label: "totes", value: "all" },
+                ...timesList.map((item, index) => ({
+                  label: item.aff,
+                  value: index,
+                })),
+              ]}
+            style={{
+              inputIOS: {
+                ...commonStyles.pickervar,
+                ...commonStyles.textvar,
+                paddingLeft: 12,
+              },
+              inputAndroid: {
+                ...commonStyles.pickervar,
+                ...commonStyles.textvar,
+                paddingLeft: 12,
+              },
+              placeholder: {
+                color: "#454545",
+              },
+            }}
+              useNativeAndroidPickerStyle={false}
+            />
             </View>
       </View>
     )

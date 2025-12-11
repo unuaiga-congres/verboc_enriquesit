@@ -108,7 +108,7 @@ const ConjugationsScreen = function ({ navigation, route }) {
     if (typenav=='model') {
       return (
       <TouchableOpacity style={commonStyles.menuSubLink} onPress={() => {navigation.navigate('Modèles')}}>
-        <Image style={[commonStyles.fav_picture, commonStyles.bloctornar]} source={require('../Images/retour.png')} />
+        <Image style={[commonStyles.tornar_picture, commonStyles.bloctornar]} source={require('../Images/retour.png')} />
       </TouchableOpacity>
       )
 

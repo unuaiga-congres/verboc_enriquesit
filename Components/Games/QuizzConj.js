@@ -4,6 +4,7 @@ import Layout from '../../Template/Layout';
 import React, { useState, useEffect } from 'react'
 import { View, TouchableOpacity, Image, Text, ActivityIndicator, Keyboard } from 'react-native'
 import {Picker} from "@react-native-picker/picker";
+import RNPickerSelect from "react-native-picker-select";
 import {ShowWithKeyboard} from 'react-native-hide-with-keyboard';
 import {getRandomForm, getConjugationFromForm } from '../../API/VerbocApi'
 import NetInfo from '@react-native-community/netinfo';
@@ -194,30 +195,62 @@ const QuizzConj = function ({ navigation, route }) {
           </View>
           <View style={commonStyles.pickerlabel}>
             <Text style={[commonStyles.textpicker]}>Jogar en&nbsp;:</Text>
-            <Picker
-              style={commonStyles.pickerlanguage}
-              selectedValue={variety}
-              onValueChange={(itemValue, itemIndex) => saveVariety(itemValue)}
-            >
-              <Picker.Item label="occitan gascon" value="gascon" />
-              <Picker.Item label="occitan lemosin" value="lemosin" />
-              <Picker.Item label="occitan lengadocian" value="lengadoc" />
-              <Picker.Item label="occitan provençal" value="provenc" />
-            </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => saveVariety(value)}
+              value={variety}
+              items={[
+                { label: "occitan gascon", value: "gascon" },
+                { label: "occitan lemosin", value: "lemosin" },
+                { label: "occitan lengadocian", value: "lengadoc" },
+                { label: "occitan provençal", value: "provenc" },
+              ]}
+              style={{
+                inputIOS: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                inputAndroid: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                placeholder: {
+                  color: "#454545",
+                },
+              }}
+              useNativeAndroidPickerStyle={false}
+            />
           </View>
           <View style={commonStyles.pickerlabel}>
             <Text style={[commonStyles.textpicker]}>Grop&nbsp;:</Text>
-            <Picker
-              style={commonStyles.pickerlanguage}
-              selectedValue={group}
-              onValueChange={(itemValue, itemIndex) => setGroup(itemValue)}
-            >
-              <Picker.Item label="totes" value="all" />
-              <Picker.Item label="primièr" value="1" />
-              <Picker.Item label="segond" value="2" />
-              <Picker.Item label="tresen" value="3" />
-              <Picker.Item label="sens grop" value="0" />
-            </Picker>
+            <RNPickerSelect
+              onValueChange={(value) => setGroup(value)}
+              value={group}
+              items={[
+                { label: "totes", value: "all" },
+                { label: "primièr", value: "1" },
+                { label: "segond", value: "2" },
+                { label: "tresen", value: "3" },
+                { label: "sens grop", value: "0" },
+              ]}
+              style={{
+                inputIOS: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                inputAndroid: {
+                  ...commonStyles.pickervar,
+                  ...commonStyles.textvar,
+                  paddingLeft: 12,
+                },
+                placeholder: {
+                  color: "#454545",
+                },
+              }}
+              useNativeAndroidPickerStyle={false}
+            />
           </View>
       </View>
     )
@@ -276,46 +309,95 @@ const QuizzConj = function ({ navigation, route }) {
             <View style={commonStyles.contpick}>
               <View style={commonStyles.pickerlabel}>
                 <Text style={[commonStyles.textpicker]}>Persona&nbsp;:</Text>
-                <Picker
-                  style={commonStyles.pickerlanguage}
-                  selectedValue={per}
-                  onValueChange={(itemValue, itemIndex) => setPer(itemValue)}
-                >
-                  <Picker.Item label="1 sg" value="1 sg" />
-                  <Picker.Item label="2 sg" value="2 sg" />
-                  <Picker.Item label="3 sg" value="3 sg" />
-                  <Picker.Item label="1 pl" value="1 pl" />
-                  <Picker.Item label="2 pl" value="2 pl" />
-                  <Picker.Item label="3 pl" value="3 pl" />
-                </Picker>
+                 <RNPickerSelect
+                   onValueChange={(value) => setPer(value)}
+                   value={per}
+                   items={[
+                     { label: "1 sg", value: "1 sg" },
+                     { label: "2 sg", value: "2 sg" },
+                     { label: "3 sg", value: "3 sg" },
+                     { label: "1 pl", value: "1 pl" },
+                     { label: "2 pl", value: "2 pl" },
+                     { label: "3 pl", value: "3 pl" },
+                   ]}
+                   style={{
+                     inputIOS: {
+                       ...commonStyles.pickervar,
+                       ...commonStyles.textvar,
+                       paddingLeft: 12,
+                     },
+                     inputAndroid: {
+                       ...commonStyles.pickervar,
+                       ...commonStyles.textvar,
+                       paddingLeft: 12,
+                     },
+                     placeholder: {
+                       color: "#454545",
+                     },
+                   }}
+                   useNativeAndroidPickerStyle={false}
+                 />
               </View>
 
               <View style={commonStyles.pickerlabel}>
                 <Text style={[commonStyles.textpicker]}>Mòde&nbsp;:</Text>
-                <Picker
-                  style={commonStyles.pickerlanguage}
-                  selectedValue={mod}
-                  onValueChange={(itemValue, itemIndex) => setMod(itemValue)}
-                >
-                  <Picker.Item label="indicatiu" value="ind" />
-                  <Picker.Item label="subjonctiu" value="subj" />
-                  <Picker.Item label="condicional" value="cond" />
-                  <Picker.Item label="imperatiu" value="imp" />
-                </Picker>
+                                 
+              <RNPickerSelect
+                onValueChange={(value) => setMod(value)}
+                value={mod}
+                items={[
+                  { label: "indicatiu", value: "ind" },
+                  { label: "subjonctiu", value: "subj" },
+                  { label: "condicional", value: "cond" },
+                  { label: "imperatiu", value: "imp" },
+                ]}
+                style={{
+                  inputIOS: {
+                    ...commonStyles.pickervar,
+                    ...commonStyles.textvar,
+                    paddingLeft: 12,
+                  },
+                  inputAndroid: {
+                    ...commonStyles.pickervar,
+                    ...commonStyles.textvar,
+                    paddingLeft: 12,
+                  },
+                  placeholder: {
+                    color: "#454545",
+                  },
+                }}
+                useNativeAndroidPickerStyle={false}
+              />
               </View>
 
               <View style={commonStyles.pickerlabel}>
                 <Text style={[commonStyles.textpicker]}>Temps&nbsp;:</Text>
-                <Picker
-                  style={commonStyles.pickerlanguage}
-                  selectedValue={tns}
-                  onValueChange={(itemValue, itemIndex) => setTns(itemValue)}
-                >
-                  <Picker.Item label="present" value="pres" />
-                  <Picker.Item label="preterit" value="pas" />
-                  <Picker.Item label="imperfach" value="imp" />
-                  <Picker.Item label="futur" value="fut" />
-                </Picker>
+                 <RNPickerSelect
+                   onValueChange={(value) => setTns(value)}
+                   value={tns}
+                   items={[
+                     { label: "present", value: "pres" },
+                     { label: "preterit", value: "pas" },
+                     { label: "imperfach", value: "imp" },
+                     { label: "futur", value: "fut" },
+                   ]}
+                   style={{
+                     inputIOS: {
+                       ...commonStyles.pickervar,
+                       ...commonStyles.textvar,
+                       paddingLeft: 12,
+                     },
+                     inputAndroid: {
+                       ...commonStyles.pickervar,
+                       ...commonStyles.textvar,
+                       paddingLeft: 12,
+                     },
+                     placeholder: {
+                       color: "#454545",
+                     },
+                   }}
+                   useNativeAndroidPickerStyle={false}
+                 />
               </View>
 
 
